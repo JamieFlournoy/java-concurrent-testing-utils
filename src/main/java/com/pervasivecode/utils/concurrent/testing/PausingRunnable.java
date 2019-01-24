@@ -9,14 +9,14 @@ import java.util.concurrent.TimeUnit;
 public interface PausingRunnable extends Runnable {
   /**
    * Has the PausingRunnable paused yet? If it has been unpaused this will also return true.
-   * 
+   *
    * @return true if it is paused, or was previously paused and has been unpaused.
    */
   boolean hasPaused();
 
   /**
    * Block the current thread indefinitely, until the PausingRunnable is paused.
-   * 
+   *
    * @throws InterruptedException if the thread that is waiting is interrupted.
    */
   void waitUntilPaused() throws InterruptedException;
@@ -38,7 +38,7 @@ public interface PausingRunnable extends Runnable {
 
   /**
    * Has the PausingRunnable been paused and then unpaused?
-   * 
+   *
    * @return true if it has been unpaused.
    */
   boolean hasUnpaused();

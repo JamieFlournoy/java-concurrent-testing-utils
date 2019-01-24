@@ -15,7 +15,7 @@ public class PausingNoOpCallable implements Callable<Integer> {
    * Create a new PausingNoOpCallable that will cube and return the specified int value. Note that
    * since values larger than about 1290 will overflow an int when raised to the third power, this
    * method will throw an exception if the inputValue is larger than that.
-   * 
+   *
    * @param inputValue An int value that will be cubed and returned when the Callable finishes.
    * @throws IllegalArgumentException if inputValue is larger than 1290.
    */

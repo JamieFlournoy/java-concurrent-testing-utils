@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A simple Runnable that pauses until released, and which provides a means of waiting until it has
  * finished executing and determining if it has already finished.
- * 
+ *
  * @see AwaitableNoOpRunnable
  * @see PausingNoOpRunnable
  */
