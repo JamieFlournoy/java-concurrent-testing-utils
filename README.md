@@ -33,11 +33,6 @@ If you are using Gradle 4.x, put this in your build.properties file:
     implementation group: 'com.pervasivecode', name: 'concurrent-testing-utils', version: '0.9.0'
 ```
 
-
-## How to use it in your code
-
-See the [Example Code][] section in [OVERVIEW.md](OVERVIEW.md) for details.
-
 ## Contributing
 
 See [DEVELOPERS.md](DEVELOPERS.md) and [GRADLE_INTRO.md](GRADLE_INTRO.md) if you want to build and hack on the code yourself.
@@ -55,12 +50,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 
 
+[Callable]: https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/Callable.html?is-external=true
 
+[Runnable]: https://docs.oracle.com/javase/10/docs/api/java/lang/Runnable.html?is-external=true
 
-
-
-
-
-# !@#$@#$@!#$@!#$!@#
-java.util.concurrent.Callable
-java.util.concurrent.Callable
+[Executor]: https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/Executor.html?is-external=true
