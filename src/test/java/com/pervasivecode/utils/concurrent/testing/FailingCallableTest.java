@@ -10,6 +10,7 @@ public class FailingCallableTest {
     Callable<Integer> failer = new FailingCallable<>();
     try {
       failer.call();
+      Truth.assert_().fail("Expected .call() to throw an exception.");
     } catch (Exception e) {
       Truth.assertThat(e).hasMessageThat().contains("always fails");
     }
