@@ -40,7 +40,7 @@ See [DEVELOPERS.md](DEVELOPERS.md) and [GRADLE_INTRO.md](GRADLE_INTRO.md) if you
 
 ## Copyright and License
 
-Copyright © 2019 Jamie Flournoy.
+Copyright © 2018 Jamie Flournoy.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
