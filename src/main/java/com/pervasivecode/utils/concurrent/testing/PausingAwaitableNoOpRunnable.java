@@ -1,5 +1,6 @@
 package com.pervasivecode.utils.concurrent.testing;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -9,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @see AwaitableNoOpRunnable
  * @see PausingNoOpRunnable
  */
-public class PausingAwaitableNoOpRunnable implements AwaitableRunnable, PausingRunnable {
+public final class PausingAwaitableNoOpRunnable implements AwaitableRunnable, PausingRunnable {
   private final PausingNoOpRunnable pausingTask = new PausingNoOpRunnable();
   private final AwaitableNoOpRunnable awaitableTask = new AwaitableNoOpRunnable();
 
@@ -57,5 +58,23 @@ public class PausingAwaitableNoOpRunnable implements AwaitableRunnable, PausingR
   @Override
   public boolean hasUnpaused() {
     return pausingTask.hasUnpaused();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(pausingTask, awaitableTask);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof PausingAwaitableNoOpRunnable)) {
+      return false;
+    }
+    PausingAwaitableNoOpRunnable otherRunnable = (PausingAwaitableNoOpRunnable) other;
+    return Objects.equals(otherRunnable.pausingTask, pausingTask)
+        && Objects.equals(otherRunnable.awaitableTask, awaitableTask);
   }
 }

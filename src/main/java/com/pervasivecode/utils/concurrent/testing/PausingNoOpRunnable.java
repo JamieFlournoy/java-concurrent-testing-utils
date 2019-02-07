@@ -1,12 +1,13 @@
 package com.pervasivecode.utils.concurrent.testing;
 
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
  * A simple Runnable that will pause until released. When released, it finishes running immediately.
  */
-public class PausingNoOpRunnable implements PausingRunnable {
+public final class PausingNoOpRunnable implements PausingRunnable {
   private final CountDownLatch notYetPaused = new CountDownLatch(1);
   private final CountDownLatch canFinish = new CountDownLatch(1);
   private volatile Runnable onPauseHandler = null;
@@ -59,5 +60,24 @@ public class PausingNoOpRunnable implements PausingRunnable {
       return;
     }
     this.onPauseHandler = onPauseHandler;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(notYetPaused, canFinish, onPauseHandler);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof PausingNoOpRunnable)) {
+      return false;
+    }
+    PausingNoOpRunnable otherRunnable = (PausingNoOpRunnable) other;
+    return Objects.equals(otherRunnable.notYetPaused, notYetPaused)
+        && Objects.equals(otherRunnable.canFinish, canFinish)
+        && Objects.equals(otherRunnable.onPauseHandler, onPauseHandler);
   }
 }

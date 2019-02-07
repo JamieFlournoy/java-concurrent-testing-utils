@@ -3,6 +3,7 @@ package com.pervasivecode.utils.concurrent.testing;
 import static com.google.common.truth.Truth.assertThat;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -10,6 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.common.truth.Truth;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
 public class PausingNoOpCallableTest {
 
@@ -93,5 +96,13 @@ public class PausingNoOpCallableTest {
     futureResult.get(1, SECONDS);
 
     assertThat(task.hasUnpaused()).isTrue();
+  }
+
+  @Test
+  public void equalsAndHashCode_shouldWork() {
+    EqualsVerifier.forClass(PausingNoOpCallable.class)
+    .suppress(Warning.NONFINAL_FIELDS)
+        .withPrefabValues(CountDownLatch.class, new CountDownLatch(2), new CountDownLatch(3))
+        .verify();
   }
 }

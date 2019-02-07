@@ -1,5 +1,6 @@
 package com.pervasivecode.utils.concurrent.testing;
 
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
@@ -7,8 +8,8 @@ import java.util.concurrent.TimeUnit;
  * A simple Callable that will pause until released. When released, it finishes running and returns
  * the input value raised to the third power (cubed).
  */
-public class PausingNoOpCallable implements Callable<Integer> {
-  private PausingNoOpRunnable blocker = new PausingNoOpRunnable();
+public final class PausingNoOpCallable implements Callable<Integer> {
+  private final PausingNoOpRunnable blocker = new PausingNoOpRunnable();
   private final int result;
 
   /**
@@ -52,5 +53,22 @@ public class PausingNoOpCallable implements Callable<Integer> {
 
   public boolean hasUnpaused() {
     return blocker.hasUnpaused();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(blocker, result);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof PausingNoOpCallable)) {
+      return false;
+    }
+    PausingNoOpCallable otherRunnable = (PausingNoOpCallable) other;
+    return Objects.equals(otherRunnable.blocker, blocker) && otherRunnable.result == result;
   }
 }

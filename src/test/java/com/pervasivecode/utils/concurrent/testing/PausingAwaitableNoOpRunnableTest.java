@@ -1,8 +1,11 @@
 package com.pervasivecode.utils.concurrent.testing;
 
 import static com.google.common.truth.Truth.assertThat;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
 import org.junit.Test;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
 public class PausingAwaitableNoOpRunnableTest {
   // TODO simplify via com.github.peterwippermann.junit4.parameterizedsuite.ParameterizedSuite;
@@ -62,5 +65,12 @@ public class PausingAwaitableNoOpRunnableTest {
       return task;
     };
     AwaitableRunnableTests.awaitTaskCompletion_shouldWaitUntilTaskCompletes(supplier);
+  }
+
+  @Test
+  public void equalsAndHashCode_shouldWork() {
+    EqualsVerifier.forClass(PausingAwaitableNoOpRunnable.class).suppress(Warning.NONFINAL_FIELDS)
+        .withPrefabValues(CountDownLatch.class, new CountDownLatch(2), new CountDownLatch(3))
+        .verify();
   }
 }

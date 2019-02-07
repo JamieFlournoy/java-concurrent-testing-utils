@@ -1,6 +1,8 @@
 package com.pervasivecode.utils.concurrent.testing;
 
+import java.util.concurrent.CountDownLatch;
 import org.junit.Test;
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class AwaitableNoOpRunnableTest {
   // TODO simplify via com.github.peterwippermann.junit4.parameterizedsuite.ParameterizedSuite;
@@ -30,5 +32,12 @@ public class AwaitableNoOpRunnableTest {
   public void awaitTaskCompletion_shouldWaitUntilTaskCompletes() throws Exception {
     AwaitableRunnableTests
         .awaitTaskCompletion_shouldWaitUntilTaskCompletes(() -> new AwaitableNoOpRunnable());
+  }
+
+  @Test
+  public void equalsAndHashCode_shouldWork() {
+    EqualsVerifier.forClass(AwaitableNoOpRunnable.class)
+        .withPrefabValues(CountDownLatch.class, new CountDownLatch(2), new CountDownLatch(3))
+        .verify();
   }
 }

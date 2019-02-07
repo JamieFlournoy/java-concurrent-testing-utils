@@ -1,12 +1,13 @@
 package com.pervasivecode.utils.concurrent.testing;
 
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
  * This is a simple AwaitableRunnable whose only purpose is to signal that it has finished running.
  */
-public class AwaitableNoOpRunnable implements AwaitableRunnable {
+public final class AwaitableNoOpRunnable implements AwaitableRunnable {
   private final CountDownLatch isFinished = new CountDownLatch(1);
 
   @Override
@@ -30,5 +31,22 @@ public class AwaitableNoOpRunnable implements AwaitableRunnable {
   @Override
   public boolean awaitTaskCompletion(long amount, TimeUnit unit) throws InterruptedException {
     return isFinished.await(amount, unit);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(isFinished);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof AwaitableNoOpRunnable)) {
+      return false;
+    }
+    AwaitableNoOpRunnable otherRunnable = (AwaitableNoOpRunnable) other;
+    return Objects.equals(otherRunnable.isFinished, isFinished);
   }
 }

@@ -2,6 +2,7 @@ package com.pervasivecode.utils.concurrent.testing;
 
 import static com.google.common.truth.Truth.assertThat;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -11,6 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.common.truth.Truth;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
 public class PausingNoOpRunnableTest {
   // TODO simplify via com.github.peterwippermann.junit4.parameterizedsuite.ParameterizedSuite;
@@ -121,5 +124,12 @@ public class PausingNoOpRunnableTest {
 
   private static ThreadPoolExecutor singleThreadExecutor() {
     return new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
+  }
+
+  @Test
+  public void equalsAndHashCode_shouldWork() {
+    EqualsVerifier.forClass(PausingNoOpRunnable.class).suppress(Warning.NONFINAL_FIELDS)
+        .withPrefabValues(CountDownLatch.class, new CountDownLatch(2), new CountDownLatch(3))
+        .verify();
   }
 }
