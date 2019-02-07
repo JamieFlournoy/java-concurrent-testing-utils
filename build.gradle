@@ -136,9 +136,8 @@ publishing {
                 // response. Likewise, publishing assets to a release
                 // staging repository will only work if this version
                 // does _not_ end in "-SNAPSHOT".
-                version = '0.9.0'
+                version = '0.9.1-SNAPSHOT'
 
-                //###
                 pom {
                     name = 'Java Concurrency Testing Utilities'
                     description = 'Classes for testing concurrent code.'
