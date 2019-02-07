@@ -33,6 +33,9 @@ repositories {
     // maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
+targetCompatibility = '1.8'
+sourceCompatibility = '1.8'
+
 dependencies {
     // Dependencies needed at runtime and compile-time, but not
     // exposed in the API of this library:
