@@ -76,6 +76,21 @@ jacocoTestReport {
     }
 }
 
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+            limit {
+                minimum = 0.95
+            }
+            excludes = [
+                // "com.pervasivecode.utils.concurrent.chute.testing.*"
+            ]
+        }
+    }
+}
+check.dependsOn jacocoTestCoverageVerification
+
 // tell the ErrorProne compiler not to warn about issues in generated
 // code (e.g. AutoValue generated classes)
 tasks.withType(JavaCompile).configureEach {
