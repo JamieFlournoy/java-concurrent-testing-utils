@@ -16,7 +16,7 @@ See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what inter
 
 ## Including it in your project
 
-Use groupId `com.pervasivecode`, name `concurrent-testing-utils`, version `0.9.0` in your build tool of choice.
+Use groupId `com.pervasivecode`, name `concurrent-testing-utils`, version `0.9.1` in your build tool of choice.
 
 ### Gradle Example
 
@@ -27,10 +27,10 @@ If you are using Gradle 4.x, put this in your build.properties file:
     mavenCentral();
 
 // in your build.gradle's dependencies {} block:
-    implementation 'com.pervasivecode:concurrent-testing-utils:0.9.0'
+    implementation 'com.pervasivecode:concurrent-testing-utils:0.9.1'
 
     // or, if you prefer the separated group/name/version syntax:
-    implementation group: 'com.pervasivecode', name: 'concurrent-testing-utils', version: '0.9.0'
+    implementation group: 'com.pervasivecode', name: 'concurrent-testing-utils', version: '0.9.1'
 ```
 
 ## Contributing
